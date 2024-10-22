@@ -5,15 +5,25 @@ public class Furniture {
     private String material;
     private double price;
     private String category;
+    private String photo;
 
-    public Furniture() {
+    public Furniture(String name, String category, String price, String material , String photo) {
     }
 
-    public Furniture(String category, double price, String material, String name) {
+    public Furniture(String category, double price, String material, String name, String photo) {
         this.category = category;
         this.price = price;
         this.material = material;
         this.name = name;
+        this.photo=photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getName() {
