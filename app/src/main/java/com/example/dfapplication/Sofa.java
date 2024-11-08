@@ -10,18 +10,8 @@ public class Sofa extends Furniture  {
     private String height ;
 
 
-    public Sofa(String height, String weight, String description, String id, int seatsamount, int quantity, String color) {
-        super(name, category, price, material);
-        this.height = height;
-        this.weight = weight;
-        this.description = description;
-        this.id = id;
-        this.seatsamount = seatsamount;
-        this.quantity = quantity;
-        this.color = color;
-    }
 
-    public Sofa(String category, double price, String material, String name, String height, String weight, String description, String id, int seatsamount, int quantity, String color) {
+    public Sofa(String category, String price, String material, String name, String height, String weight, String description, String id, int seatsamount, int quantity, String color) {
         super(category, price, material, name);
         this.height = height;
         this.weight = weight;

@@ -18,13 +18,7 @@ public class ShoppingCart {
         items.remove(item);
     }
 
-    public double calculateTotal() {
-        double total = 0;
-        for (Furniture item : items) {
-            total += item.getPrice();
-        }
-        return total;
-    }
+
 
     public List<Furniture> getItems() {
         return items;

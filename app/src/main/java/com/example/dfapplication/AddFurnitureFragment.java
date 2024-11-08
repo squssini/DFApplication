@@ -60,30 +60,31 @@ public class AddFurnitureFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name , category , price , material;
+                String name , category , material;
+                String price;
                 name = etName.getText().toString();
                 category= etCategory.getText().toString();
-                price= etPrice.getText().toString();
+                price=etPrice.getText().toString();
                 material = etmaterial.getText().toString();
 
-                if (name.trim().isEmpty() || category.trim().isEmpty() ||
-                        price.trim().isEmpty() ||material.trim().isEmpty() )
+                if (name.trim().isEmpty() || category.trim().isEmpty() || price.trim().isEmpty() ||material.trim().isEmpty() )
                 {
                     Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Furniture rest = new Furniture(name , category,price ,material,"" );
+                // public Furniture(String category, double price, String material, String name) {
+                Furniture rest = new Furniture(category, price,material ,name );
 
                  fbs.getFire().collection("furniture").add(rest).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                      @Override
                      public void onSuccess(DocumentReference documentReference) {
-
+                         Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
                      }
                  }).addOnFailureListener(new OnFailureListener() {
                      @Override
                      public void onFailure(@NonNull Exception e) {
-
+                         Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
                      }
                  });
 

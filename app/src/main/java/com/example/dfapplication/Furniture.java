@@ -1,16 +1,16 @@
 package com.example.dfapplication;
 
 public class Furniture {
-    private String name;
-    private String material;
-    private double price;
-    private String category;
+   private String name;
+  private  String material;
+  private  String price;
+ private  String category;
     private String photo;
 
-    public Furniture(String name, String category, String price, String material , String photo) {
+    public Furniture() {
     }
 
-    public Furniture(String category, double price, String material, String name, String photo) {
+    public Furniture(String category, String price, String material, String name) {
         this.category = category;
         this.price = price;
         this.material = material;
@@ -42,11 +42,11 @@ public class Furniture {
         this.material = material;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
