@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,9 +52,9 @@ public class AddFurnitureFragment extends Fragment {
     }
 
     private void connectComponents() {
-        etmaterial=getActivity().findViewById(R.id.etmaterial);
+        etmaterial=getActivity().findViewById(R.id.etName);
         etCategory=getActivity().findViewById(R.id.etCategory);
-        etName=getActivity().findViewById(R.id.etName);
+        etName=getActivity().findViewById(R.id.etMaterial);
         etPrice=getActivity().findViewById(R.id.etPrice);
         fbs= Firebase.getInstance();
         btnAdd=getActivity().findViewById(R.id.btnAdd);
@@ -79,7 +80,8 @@ public class AddFurnitureFragment extends Fragment {
                  fbs.getFire().collection("furniture").add(rest).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                      @Override
                      public void onSuccess(DocumentReference documentReference) {
-                         Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
+                         Toast.makeText(getActivity(), "Successfully Added ", Toast.LENGTH_SHORT).show();
+                         gotoAllFurnitureFragment();
                      }
                  }).addOnFailureListener(new OnFailureListener() {
                      @Override
@@ -124,5 +126,10 @@ public class AddFurnitureFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_furniture, container, false);
+    }
+    private void gotoAllFurnitureFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main, new AllFurnitureFragment());
+        ft.commit();
     }
 }

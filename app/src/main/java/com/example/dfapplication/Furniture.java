@@ -15,7 +15,7 @@ public class Furniture {
         this.price = price;
         this.material = material;
         this.name = name;
-        this.photo=photo;
+        this.photo="";
     }
 
     public String getPhoto() {

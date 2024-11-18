@@ -88,7 +88,7 @@ public class AllFurnitureFragment extends Fragment {
         rvFurs.setAdapter(adapter);
         rvFurs.setHasFixedSize(true);
         rvFurs.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fbs.getFire().collection("restaurants").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        fbs.getFire().collection("furniture").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
