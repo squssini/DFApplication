@@ -52,9 +52,9 @@ public class AddFurnitureFragment extends Fragment {
     }
 
     private void connectComponents() {
-        etmaterial=getActivity().findViewById(R.id.etName);
+        etmaterial=getActivity().findViewById(R.id.etMaterial);
         etCategory=getActivity().findViewById(R.id.etCategory);
-        etName=getActivity().findViewById(R.id.etMaterial);
+        etName=getActivity().findViewById(R.id.etName);
         etPrice=getActivity().findViewById(R.id.etPrice);
         fbs= Firebase.getInstance();
         btnAdd=getActivity().findViewById(R.id.btnAdd);
