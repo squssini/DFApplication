@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +31,7 @@ public class AddFurnitureFragment extends Fragment {
     private EditText etPrice;
     private Button btnAdd;
     private Firebase fbs;
+    ImageView img;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -57,6 +59,7 @@ public class AddFurnitureFragment extends Fragment {
         etName=getActivity().findViewById(R.id.etName);
         etPrice=getActivity().findViewById(R.id.etPrice);
         fbs= Firebase.getInstance();
+        img = getView().findViewById(R.id.ivFurnitureAddFurnitureFragment);
         btnAdd=getActivity().findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

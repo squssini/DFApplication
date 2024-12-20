@@ -1,5 +1,6 @@
 package com.example.dfapplication;
 
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
@@ -9,10 +10,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.dfapplication.D_FireBase.Firebase;
+import com.example.dfapplication.Firebase;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.Firebase;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
