@@ -26,12 +26,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        gotoAddFurnitureFragment();
+        gotoLoginFragment();
     }
 
-    private void gotoAddFurnitureFragment() {
+    private void gotoLoginFragment() {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main, new AddFurnitureFragment());
+        ft.replace(R.id.main, new LoginFragment());
         ft.commit();
     }
 }
