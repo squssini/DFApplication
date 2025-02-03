@@ -100,7 +100,7 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
-
+                        gotoAddFurnitureFragment();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -114,4 +114,9 @@ public class SignUpFragment extends Fragment {
 
     }
 
+    private void gotoAddFurnitureFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main, new AddFurnitureFragment());
+        ft.commit();
+    }
 }
