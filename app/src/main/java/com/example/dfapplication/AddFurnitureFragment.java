@@ -32,6 +32,7 @@ public class AddFurnitureFragment extends Fragment {
     private Button btnAdd;
     private Firebase fbs;
     ImageView img;
+    private Utils utils;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -59,6 +60,7 @@ public class AddFurnitureFragment extends Fragment {
         etName=getActivity().findViewById(R.id.etName);
         etPrice=getActivity().findViewById(R.id.etPrice);
         fbs= Firebase.getInstance();
+        utils = Utils.getInstance();
         img = getView().findViewById(R.id.ivFurnitureAddFurnitureFragment);
         btnAdd=getActivity().findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
