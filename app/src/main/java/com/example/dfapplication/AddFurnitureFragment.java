@@ -1,11 +1,14 @@
 package com.example.dfapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +28,7 @@ import com.google.firebase.firestore.DocumentReference;
  */
 public class AddFurnitureFragment extends Fragment {
 
+    private static final int GALLERY_REQUEST_CODE = 123;
     private EditText etmaterial;
     private EditText etName;
     private EditText etCategory;
@@ -45,6 +49,7 @@ public class AddFurnitureFragment extends Fragment {
     private String mParam2;
 
     public AddFurnitureFragment() {
+
         // Required empty public constructor
     }
 
@@ -96,9 +101,34 @@ public class AddFurnitureFragment extends Fragment {
                  });
 
             }
+
+        });
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
         });
     }
 
+
+
+
+    private void openGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            img.setImageURI(selectedImageUri);
+            utils.uploadImage(getActivity(), selectedImageUri);
+        }
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
