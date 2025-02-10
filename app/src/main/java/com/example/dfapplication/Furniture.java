@@ -1,28 +1,21 @@
 package com.example.dfapplication;
 
 public class Furniture {
-   private String name;
-  private  String material;
-  private  String price;
- private  String category;
+
+    private String name;
+    private  String material;
+    private  String price;
+    private  String category;
     private String photo;
 
     public Furniture() {
     }
 
-    public Furniture(String category, String price, String material, String name) {
-        this.category = category;
-        this.price = price;
-        this.material = material;
+    public Furniture(String name, String material, String price, String category, String photo) {
         this.name = name;
-        this.photo="";
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
+        this.material = material;
+        this.price = price;
+        this.category = category;
         this.photo = photo;
     }
 
@@ -58,13 +51,22 @@ public class Furniture {
         this.category = category;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "Furniture{" +
                 "name='" + name + '\'' +
                 ", material='" + material + '\'' +
-                ", price=" + price +
+                ", price='" + price + '\'' +
                 ", category='" + category + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }

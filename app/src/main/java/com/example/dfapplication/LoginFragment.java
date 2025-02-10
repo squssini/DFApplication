@@ -87,8 +87,9 @@ public class LoginFragment extends Fragment {
         tvSignupLink = getView().findViewById(R.id.tvSignupLinkLogin);
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 gotoSignupFragment();
+
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -106,12 +107,14 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
+                        gotoAddFurnitureFragment();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                        gotoSignupFragment();
                     }
                 });
 
@@ -119,7 +122,11 @@ public class LoginFragment extends Fragment {
         });
 
     }
-
+    private void gotoAddFurnitureFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main, new AddFurnitureFragment());
+        ft.commit();
+    }
     private void gotoSignupFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.frameLayoutMain, new SignUpFragment());

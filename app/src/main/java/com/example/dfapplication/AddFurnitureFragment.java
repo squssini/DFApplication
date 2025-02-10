@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 
+import kotlinx.coroutines.channels.ChannelSegment;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AddFurnitureFragment#newInstance} factory method to
@@ -85,9 +87,13 @@ public class AddFurnitureFragment extends Fragment {
                 }
 
                 // public Furniture(String category, double price, String material, String name) {
-                Furniture rest = new Furniture(category, price,material ,name );
+                Furniture furniture;
+                if (fbs.getSelectedImageURL() == null)
+                    furniture = new Furniture(category, price,material ,name, "" );
+                else
+                    furniture = new Furniture(category, price,material ,name, fbs.getSelectedImageURL().toString() );
 
-                 fbs.getFire().collection("furniture").add(rest).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                 fbs.getFire().collection("furniture").add(furniture).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                      @Override
                      public void onSuccess(DocumentReference documentReference) {
                          Toast.makeText(getActivity(), "Successfully Added ", Toast.LENGTH_SHORT).show();
