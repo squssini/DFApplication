@@ -21,7 +21,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 
-import kotlinx.coroutines.channels.ChannelSegment;
+
 
 /**
  * A simple {@link Fragment} subclass.
