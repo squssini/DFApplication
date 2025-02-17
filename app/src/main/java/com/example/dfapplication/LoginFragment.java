@@ -88,7 +88,7 @@ public class LoginFragment extends Fragment {
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoSignupFragment();
+                gotoSignUpFragment();
 
             }
         });
@@ -114,7 +114,6 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                        gotoSignupFragment();
                     }
                 });
 
@@ -127,9 +126,9 @@ public class LoginFragment extends Fragment {
         ft.replace(R.id.main, new AddFurnitureFragment());
         ft.commit();
     }
-    private void gotoSignupFragment() {
+    private void gotoSignUpFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayoutMain, new SignUpFragment());
+        ft.replace(R.id.main, new SignUpFragment());
         ft.commit();
     }
 }
