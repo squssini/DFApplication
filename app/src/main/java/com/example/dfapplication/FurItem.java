@@ -3,14 +3,54 @@ package com.example.dfapplication;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class FurItem implements Parcelable {
+import androidx.annotation.NonNull;
+
+public  class FurItem implements Parcelable {
     private String nameFur;
-    private  String owners; //בעלים
+    private  String owners;
     private String phone;
-    private String color; //צבע
-    private  String fur_num; //מספר הרכב
-    private  String   price; //מחיר
+    private String color;
+    private  String fur_num;
+    private  String   price;
     private String photo;
+
+    protected FurItem(Parcel in) {
+        nameFur = in.readString();
+        owners = in.readString();
+        phone = in.readString();
+        color = in.readString();
+        fur_num = in.readString();
+        price = in.readString();
+        photo = in.readString();
+    }
+
+    public static final Creator<FurItem> CREATOR = new Creator<FurItem>() {
+        @Override
+        public FurItem createFromParcel(Parcel in) {
+            return new FurItem(in);
+        }
+
+        @Override
+        public FurItem[] newArray(int size) {
+            return new FurItem[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(nameFur);
+        dest.writeString(owners);
+        dest.writeString(phone);
+        dest.writeString(color);
+        dest.writeString(fur_num);
+        dest.writeString(price);
+        dest.writeString(photo);
+    }
 
     public FurItem() {
     }
