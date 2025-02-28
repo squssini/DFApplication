@@ -85,7 +85,7 @@ public class LoginFragment extends Fragment {
         etPassword = getView().findViewById(R.id.etPasswordLogin);
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
         tvSignupLink = getView().findViewById(R.id.tvSignupLinkLogin);
-        tvForgotLink = getView().findViewById(R.id.tvSignupLinkLogin);
+        tvForgotLink = getView().findViewById(R.id.tvForgotLinkLogin);
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,7 @@ public class LoginFragment extends Fragment {
         });
         tvForgotLink.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 gotoForgotFragment();
             }
         });

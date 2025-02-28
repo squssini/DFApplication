@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FurnitureDetailsFragment#newInstance} factory method to
@@ -137,7 +139,7 @@ public class FurnitureDetailsFragment extends Fragment  {
                 tvPrice.setText(myFur.getPrice()+" ₪");
                 if (myFur.getPhoto() == null || myFur.getPhoto().isEmpty())
                 {
-                    Picasso.get().load(R.drawable.ic_fav).into(ivFurPhoto);
+                    Picasso.get().load(R.drawable.ic_launcher_background).into(ivFurPhoto);
                 }
                 else {
                     Picasso.get().load(myFur.getPhoto()).into(ivFurPhoto);
