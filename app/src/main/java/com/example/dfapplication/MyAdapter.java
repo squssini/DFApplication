@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -36,6 +38,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Furniture Fur = FurList.get(position);
         holder.tvName.setText(Fur.getName());
         holder.tvPrice.setText(Fur.getPrice());
+        if (Fur.getPhoto() == null || Fur.getPhoto().isEmpty())
+        {
+            Picasso.get().load(R.drawable.ic_fav).into(holder.imageView);
+        }
+        else {
+            Picasso.get().load(Fur.getPhoto()).into(holder.imageView);
+        }
     }
 
     @Override
@@ -44,12 +53,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName, tvPrice;
+        TextView tvName, tvPrice , imageView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName=itemView.findViewById(R.id.tvNameFurItem);
             tvPrice=itemView.findViewById(R.id.tvPriceFurItem);
-
+            imageView=itemView.findViewById(R.id.imageView);
         }
     }
 }
