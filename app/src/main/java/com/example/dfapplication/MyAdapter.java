@@ -40,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.tvPrice.setText(Fur.getPrice());
         if (Fur.getPhoto() == null || Fur.getPhoto().isEmpty())
         {
-            Picasso.get().load(R.drawable.ic_fav).into(holder.imageView);
+            Picasso.get().load(R.drawable.ic_launcher_background).into(holder.imageView);
         }
         else {
             Picasso.get().load(Fur.getPhoto()).into(holder.imageView);
@@ -53,7 +53,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tvName, tvPrice , imageView;
+        TextView tvName, tvPrice ;
+        ImageView imageView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName=itemView.findViewById(R.id.tvNameFurItem);
