@@ -19,6 +19,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context context;
     ArrayList<Furniture> FurList;
     private Firebase fbs;
+    private OnItemClickListener itemClickListener;
 
     public MyAdapter(Context context, ArrayList<Furniture> restList) {
         this.context = context;
@@ -38,6 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         Furniture Fur = FurList.get(position);
         holder.tvName.setText(Fur.getName());
         holder.tvPrice.setText(Fur.getPrice());
+
         if (Fur.getPhoto() == null || Fur.getPhoto().isEmpty())
         {
             Picasso.get().load(R.drawable.ic_launcher_background).into(holder.imageView);
@@ -61,5 +63,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             tvPrice=itemView.findViewById(R.id.tvPriceFurItem);
             imageView=itemView.findViewById(R.id.imageView);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.itemClickListener = listener;
     }
 }

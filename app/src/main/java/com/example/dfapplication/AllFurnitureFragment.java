@@ -4,9 +4,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
  */
 public class AllFurnitureFragment extends Fragment {
     private Firebase fbs;
-    private ArrayList<Furniture> Furs;
+    private ArrayList<Furniture> Furs,filteredList;
     private RecyclerView rvFurs;
     private MyAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
@@ -105,6 +107,21 @@ public class AllFurnitureFragment extends Fragment {
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
                 Log.e("AllRestaurantsFragment", e.getMessage());
+            }
+        });
+        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // Handle item click here
+                String selectedItem = filteredList.get(position).getName();
+                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putParcelable("fur", (Parcelable) filteredList.get(position)); // or use Parcelable for better performance
+                FurnitureDetailsFragment cd = new FurnitureDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.main,cd);
+                ft.commit();
             }
         });
     }
