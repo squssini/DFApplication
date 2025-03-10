@@ -29,7 +29,7 @@ import java.util.ArrayList;
  */
 public class AllFurnitureFragment extends Fragment {
     private Firebase fbs;
-    private ArrayList<Furniture> Furs,filteredList;
+    private ArrayList<FurItem> Furs,filteredList;
     private RecyclerView rvFurs;
     private MyAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
@@ -95,7 +95,7 @@ public class AllFurnitureFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
-                    Furniture Fur = dataSnapshot.toObject(Furniture.class);
+                    FurItem Fur = dataSnapshot.toObject(FurItem.class);
 
                     Furs.add(Fur);
                 }
@@ -113,7 +113,9 @@ public class AllFurnitureFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 // Handle item click here
-                String selectedItem = filteredList.get(position).getName();
+                FurItem fi = new FurItem(filteredList.get(position).getPhoto(),filteredList.get(position).getPrice(),filteredList.get(position).getFur_num(),
+                        filteredList.get(position).getColor(),filteredList.get(position).getPhone(),filteredList.get(position).getOwners(),filteredList.get(position).getNameFur());;
+                String selectedItem = filteredList.get(position).getNameFur();
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
                 args.putParcelable("fur", (Parcelable) filteredList.get(position)); // or use Parcelable for better performance
