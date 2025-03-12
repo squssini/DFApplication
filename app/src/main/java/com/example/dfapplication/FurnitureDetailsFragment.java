@@ -92,9 +92,9 @@ public class FurnitureDetailsFragment extends Fragment  {
     public void onStart() {
         super.onStart();
         init();
-        ImageView ivCarPhoto = getView().findViewById(R.id.ivFurnitureDetailsFragment);
+        ImageView ivFurPhoto = getView().findViewById(R.id.ivFurnitureDetailsFragment);
 
-        ivCarPhoto.setOnClickListener(new View.OnClickListener() {
+        ivFurPhoto.setOnClickListener(new View.OnClickListener() {
 
             @Override
 

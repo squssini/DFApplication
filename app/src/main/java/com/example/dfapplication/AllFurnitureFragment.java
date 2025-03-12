@@ -114,7 +114,7 @@ public class AllFurnitureFragment extends Fragment {
             public void onItemClick(int position) {
                 // Handle item click here
                 FurItem fi = new FurItem(filteredList.get(position).getPhoto(),filteredList.get(position).getPrice(),filteredList.get(position).getFur_num(),
-                        filteredList.get(position).getColor(),filteredList.get(position).getPhone(),filteredList.get(position).getOwners(),filteredList.get(position).getNameFur());;
+                filteredList.get(position).getColor(),filteredList.get(position).getPhone(),filteredList.get(position).getOwners(),filteredList.get(position).getNameFur());;
                 String selectedItem = filteredList.get(position).getNameFur();
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
