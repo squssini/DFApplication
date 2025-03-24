@@ -1,11 +1,13 @@
 package com.example.dfapplication;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
@@ -47,6 +49,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         else {
             Picasso.get().load(Fur.getPhoto()).into(holder.imageView);
         }
+        holder.tvName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putParcelable("fur", (Parcelable) Fur); // or use Parcelable for better performance
+                FurnitureDetailsFragment cd = new FurnitureDetailsFragment();
+                cd.setArguments(args);
+                FragmentTransaction ft=((MainActivity)context).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.main,cd);
+                ft.commit();
+            }
+        });
     }
 
     @Override
