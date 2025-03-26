@@ -76,12 +76,13 @@ public class AddFurnitureFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name , category , material;
+                String name , category , material, phoneNum,color;
                 String price;
                 name = etName.getText().toString();
                 category= etCategory.getText().toString();
                 price=etPrice.getText().toString();
                 material = etmaterial.getText().toString();
+
 
                 if (name.trim().isEmpty() || category.trim().isEmpty() || price.trim().isEmpty() ||material.trim().isEmpty() )
                 {
@@ -89,12 +90,13 @@ public class AddFurnitureFragment extends Fragment {
                     return;
                 }
 
-                // public Furniture(String category, double price, String material, String name) {
+                //    public Furniture(String name, String phoneNum, String color, String numOfFur, String owner, String material, String price, String category, String photo) {
                 Furniture furniture;
                 if (fbs.getSelectedImageURL() == null)
-                    furniture = new Furniture(category, price,material ,name, "" );
+                    furniture = new Furniture( name,  "",  "",  "", "", material, price,  category, "" );
                 else
-                    furniture = new Furniture(category, price,material ,name, fbs.getSelectedImageURL().toString() );
+                    furniture = new Furniture( name,  "",  "",  "", "", material, price,  category,
+                fbs.getSelectedImageURL().toString() );
 
                  fbs.getFire().collection("furniture").add(furniture).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                      @Override

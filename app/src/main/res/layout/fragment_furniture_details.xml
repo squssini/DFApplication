@@ -67,7 +67,7 @@ tools:context=".pagess.AddFurnitureFragment">
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/tvFurNumberDetailsFragment"
+        android:id="@+id/tvFurNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
@@ -78,12 +78,12 @@ tools:context=".pagess.AddFurnitureFragment">
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name of Fur :"
         android:layout_marginTop="20sp"
-        android:textStyle="bold"/>
+        android:text="Name of Fur :"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvNameFurDetailsFragment"
+        android:id="@+id/tvNameFur"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name of Fur"
@@ -92,7 +92,7 @@ tools:context=".pagess.AddFurnitureFragment">
 
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/tvmaterial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -100,7 +100,7 @@ tools:context=".pagess.AddFurnitureFragment">
         android:layout_marginTop="20dp"/>
 
     <TextView
-        android:id="@+id/tvMaterialDetailsFragment"
+        android:id="@+id/tvMaterial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Material"

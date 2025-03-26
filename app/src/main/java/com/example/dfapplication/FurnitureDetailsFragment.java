@@ -31,10 +31,10 @@ public class FurnitureDetailsFragment extends Fragment  {
     private static final int PERMISSION_SEND_SMS = 1;
     private static final int REQUEST_CALL_PERMISSION = 2;
     private Firebase fbs;
-    private TextView tvnameFur,tvOwners,tvColor,tvFur_num,tvPrice, tvPhone;
+    private TextView tvnameFur,tvOwner,tvColor,tvFurnum,tvPrice, tvPhone , tvmaterial;
     private ImageView ivFurPhoto;
     private Button sendSMSButton, btnWhatsapp, btnCall;
-    private FurItem myFur;
+    private Furniture myFur;
 
     private boolean isEnlarged = false; //משתנה כדי לעקוב אחרי המצב הנוכחי של התמונה (האם היא מגודלת או לא)
 
@@ -117,10 +117,11 @@ public class FurnitureDetailsFragment extends Fragment  {
 
 
         fbs= Firebase.getInstance();
-        tvnameFur=getView().findViewById(R.id.tvNameFurDetailsFragment);
-        tvOwners=getView().findViewById(R.id.tvOwnersDetailsFragment);
+        tvnameFur=getView().findViewById(R.id.tvNameFur);
+        tvmaterial=getView().findViewById(R.id.tvmaterial);
+        tvOwner=getView().findViewById(R.id.tvOwnersDetailsFragment);
         tvPhone=getView().findViewById(R.id.tvPhoneDetailsFragment);
-        tvFur_num=getView().findViewById(R.id.tvFurNumberDetailsFragment);
+        tvFurnum=getView().findViewById(R.id.tvFurNumber);
         tvColor = getView().findViewById(R.id.tvColorDetailsFragment);
         tvPrice=getView().findViewById(R.id.tvPriceDetailsFragment);
         ivFurPhoto = getView().findViewById(R.id.ivFurnitureDetailsFragment);
@@ -131,10 +132,11 @@ public class FurnitureDetailsFragment extends Fragment  {
             if (myFur != null) {
                 //String data = myObject.getData();
                 // Now you can use 'data' as needed in FragmentB
-                tvnameFur.setText(myFur.getNameFur());
-                tvOwners.setText(myFur.getOwners());
-                tvPhone.setText(myFur.getPhone());
-                tvFur_num.setText(myFur.getFur_num());
+                tvnameFur.setText(myFur.getName());
+                tvmaterial.setText(myFur.getMaterial());
+                tvOwner.setText(myFur.getOwner());
+                tvPhone.setText(myFur.getPhoneNum());
+                tvFurnum.setText(myFur.getNumOfFur());
                 tvColor.setText(myFur.getColor());
                 tvPrice.setText(myFur.getPrice()+" ₪");
                 if (myFur.getPhoto() == null || myFur.getPhoto().isEmpty())
@@ -180,8 +182,8 @@ public class FurnitureDetailsFragment extends Fragment  {
     }
 
     private void sendSMS() {
-        String phoneNumber = myFur.getPhone();
-        String message = "I am Interested in your  "+myFur.getNameFur()+"  car: " + myFur.getFur_num();
+        String phoneNumber = myFur.getPhoneNum();
+        String message = "I am Interested in your  "+myFur.getName()+"  car: " + myFur.getNumOfFur();
 
         try {
             SmsManager smsManager = SmsManager.getDefault();
@@ -213,11 +215,11 @@ public class FurnitureDetailsFragment extends Fragment  {
     // TODO : check Phone number is not correct;
     public void sendWhatsAppMessage(View view) {
 
-        String smsNumber = "+972"+myFur.getPhone();
+        String smsNumber = "+972"+myFur.getPhoneNum();
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
         //  Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
         sendIntent.setType("text/plain");
-        sendIntent.putExtra(Intent.EXTRA_TEXT, " I am Interested in your  " +myFur.getNameFur()+ "  car:  "  + myFur.getFur_num());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, " I am Interested in your  " +myFur.getName()+ "  car:  "  + myFur.getNumOfFur());
         sendIntent.putExtra("jid", smsNumber + "@s.whatsapp.net"); //phone number without "+" prefix
         sendIntent.setPackage("com.whatsapp");
 
@@ -248,7 +250,7 @@ public class FurnitureDetailsFragment extends Fragment  {
 
     private void startCall() {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:" + myFur.getPhone()));
+        callIntent.setData(Uri.parse("tel:" + myFur.getPhoneNum()));
 
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
             startActivity(callIntent);
