@@ -29,7 +29,7 @@ import java.util.ArrayList;
  */
 public class AllFurnitureFragment extends Fragment {
     private Firebase fbs;
-    private ArrayList<FurItem> Furs,filteredList;
+    private ArrayList<Furniture> Furs,filteredList;
     private RecyclerView rvFurs;
     private MyAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
@@ -95,7 +95,7 @@ public class AllFurnitureFragment extends Fragment {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
                 for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
-                    FurItem Fur = dataSnapshot.toObject(FurItem.class);
+                    Furniture Fur = dataSnapshot.toObject(Furniture.class);
 
                     Furs.add(Fur);
                 }
@@ -113,9 +113,10 @@ public class AllFurnitureFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
                 // Handle item click here
-                FurItem fi = new FurItem(filteredList.get(position).getPhoto(),filteredList.get(position).getPrice(),filteredList.get(position).getFur_num(),
-                filteredList.get(position).getColor(),filteredList.get(position).getPhone(),filteredList.get(position).getOwners(),filteredList.get(position).getNameFur());;
-                String selectedItem = filteredList.get(position).getNameFur();
+                Furniture fi = new Furniture(filteredList.get(position).getName(),filteredList.get(position).getPhoneNum(),filteredList.get(position).getColor(),
+                filteredList.get(position).getNumOfFur(),filteredList.get(position).getOwner(),filteredList.get(position).getMaterial(),filteredList.get(position).getPrice(),
+                        filteredList.get(position).getCategory(),filteredList.get(position).getPhoto());
+                String selectedItem="";
                 Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
                 Bundle args = new Bundle();
                 args.putParcelable("fur", (Parcelable) filteredList.get(position)); // or use Parcelable for better performance

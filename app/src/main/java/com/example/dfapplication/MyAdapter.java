@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context context;
-    ArrayList<FurItem> FurList;
+    ArrayList<Furniture> FurList;
     private Firebase fbs;
     private OnItemClickListener itemClickListener;
 
-    public MyAdapter(Context context, ArrayList<FurItem> restList) {
+    public MyAdapter(Context context, ArrayList<Furniture> restList) {
         this.context = context;
         this.FurList = restList;
         this.fbs = Firebase.getInstance();
@@ -38,8 +38,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-        FurItem Fur = FurList.get(position);
-        holder.tvName.setText(Fur.getNameFur());
+        Furniture Fur = FurList.get(position);
+        holder.tvName.setText(Fur.getName());
         holder.tvPrice.setText(Fur.getPrice());
 
         if (Fur.getPhoto() == null || Fur.getPhoto().isEmpty())
