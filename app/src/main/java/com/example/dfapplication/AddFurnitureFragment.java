@@ -130,7 +130,7 @@ public class AddFurnitureFragment extends Fragment {
             if (requestCode == GALLERY_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
                 Uri selectedImageUri = data.getData();
                 img.setImageURI(selectedImageUri);
-                utils.uploadImage(getActivity(), selectedImageUri);
+                utils.uploadImage(selectedImageUri);
             }
         }
         catch(Exception ex) {

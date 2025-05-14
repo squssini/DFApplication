@@ -1,5 +1,6 @@
 package com.example.dfapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -114,7 +115,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
-                        gotoAddFurnitureFragment();
+                        gotoAddFurnitureActivity();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -128,11 +129,11 @@ public class LoginFragment extends Fragment {
         });
 
     }
-    private void gotoAddFurnitureFragment() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main, new AddFurnitureFragment());
-        ft.commit();
+    private void gotoAddFurnitureActivity() {
+        Intent intent = new Intent(getActivity(), AddFurnitureActivity.class);
+        startActivity(intent);
     }
+
     private void gotoSignUpFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main, new SignUpFragment());
