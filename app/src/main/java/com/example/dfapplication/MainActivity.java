@@ -16,22 +16,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if (savedInstanceState == null) {
+            String loadFragment = getIntent().getStringExtra("loadFragment");
+            if ("allFurniture".equals(loadFragment)) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.mainFragmentContainer, new AllFurnitureFragment())
+                        .commit();
+            } else {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.mainFragmentContainer, new LoginFragment())
+                        .commit();
+            }
+        }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        gotoLoginFragment();
-    }
 
-    private void gotoLoginFragment() {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main, new LoginFragment());
-        ft.commit();
-    }
 }

@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,7 +42,8 @@ public class AddFurnitureActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_furniture); // Consider renaming the layout to activity_add_furniture.xml
+        setContentView(R.layout.fragment_add_furniture); // Consider renaming the layout to activity_add_furniture.xml
+
         connectComponents();
     }
 
@@ -84,7 +84,7 @@ public class AddFurnitureActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Toast.makeText(AddFurnitureActivity.this, "Successfully Added", Toast.LENGTH_SHORT).show();
-                                gotoAllFurnitureFragment();
+                                gotoAllFurnitureActivity();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -131,10 +131,9 @@ public class AddFurnitureActivity extends AppCompatActivity {
         }
     }
 
-    private void gotoAllFurnitureFragment() {
-        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.FrameLayoutAdd
-                , new AllFurnitureFragment());
-        ft.commit();
+    private void gotoAllFurnitureActivity() {
+        Intent intent = new Intent(this, AllFurnitureFragment.class);
+        startActivity(intent);
+        finish(); // Optional: Finish current activity to prevent going back
     }
 }
