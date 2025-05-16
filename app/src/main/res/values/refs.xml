@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="ic_baseline_indeterminate_check_box_24" />
+    <drawable name="ic_baseline_add_box_24" />
+    <drawable name="ic_baseline_clear_24" />
+</resources>
