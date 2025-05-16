@@ -128,10 +128,12 @@ public class AddFurnitureActivity extends AppCompatActivity {
             Log.e("SHAHED1", ex.getMessage());
         }
     }
-
     private void gotoAllFurnitureActivity() {
-        Intent intent = new Intent(this, AllFurnitureFragment.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("loadFragment", "allFurniture");
         startActivity(intent);
-        finish(); // Optional: Finish current activity to prevent going back
+        finish(); // Optional: removes AddFurnitureActivity from back stack
     }
+
+
 }
