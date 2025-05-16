@@ -42,6 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.tvName.setText(Fur.getName());
         holder.tvPrice.setText(Fur.getPrice());
 
+
         if (Fur.getPhoto() == null || Fur.getPhoto().isEmpty())
         {
             Picasso.get().load(R.drawable.ic_launcher_background).into(holder.imageView);

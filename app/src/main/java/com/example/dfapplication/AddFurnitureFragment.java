@@ -30,7 +30,7 @@ import com.google.firebase.firestore.DocumentReference;
  * Use the {@link AddFurnitureFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddFurnitureFragment extends Fragment {
+/*public class AddFurnitureFragment extends Fragment {
 
     private static final int GALLERY_REQUEST_CODE = 123;
     private EditText etmaterial;
@@ -150,4 +150,4 @@ public class AddFurnitureFragment extends Fragment {
         ft.replace(R.id.main, new AllFurnitureFragment());
         ft.commit();
     }
-}
+}*/

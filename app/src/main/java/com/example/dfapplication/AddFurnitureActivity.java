@@ -2,15 +2,12 @@ package com.example.dfapplication;
 
 import static android.app.PendingIntent.getActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -124,7 +120,9 @@ public class AddFurnitureActivity extends AppCompatActivity {
             if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
                 Uri selectedImageUri = data.getData();
                 img.setImageURI(selectedImageUri);
-                utils.uploadImage(selectedImageUri);
+                utils.uploadImage(this, selectedImageUri);
+
+
             }
         } catch (Exception ex) {
             Log.e("SHAHED1", ex.getMessage());

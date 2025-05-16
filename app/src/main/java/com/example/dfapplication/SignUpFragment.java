@@ -1,5 +1,6 @@
 package com.example.dfapplication;
 
+import android.content.Intent;
 import android.health.connect.datatypes.units.Length;
 import android.os.Bundle;
 
@@ -100,7 +101,7 @@ public class SignUpFragment extends Fragment {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
-                        gotoAddFurnitureFragment();
+                        gotoAddFurnitureActivity();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -114,9 +115,10 @@ public class SignUpFragment extends Fragment {
 
     }
 
-    private void gotoAddFurnitureFragment() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main, new AddFurnitureFragment());
-        ft.commit();
+    private void gotoAddFurnitureActivity() {
+        Intent intent = new Intent(getActivity(), AddFurnitureActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
     }
+
 }

@@ -114,7 +114,7 @@ public class LoginFragment extends Fragment {
                 fbs.getAuth().signInWithEmailAndPassword(username,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Successfully logged in ", Toast.LENGTH_SHORT).show();
                         gotoAddFurnitureActivity();
 
                     }
@@ -136,9 +136,11 @@ public class LoginFragment extends Fragment {
 
     private void gotoSignUpFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main, new SignUpFragment());
+        ft.replace(R.id.mainFragmentContainer, new SignUpFragment());
+        ft.addToBackStack(null);
         ft.commit();
     }
+
     private void gotoForgotFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main, new ForgotFragment());
