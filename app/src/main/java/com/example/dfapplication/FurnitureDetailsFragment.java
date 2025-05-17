@@ -33,7 +33,7 @@ public class FurnitureDetailsFragment extends Fragment  {
     private static final int PERMISSION_SEND_SMS = 1;
     private static final int REQUEST_CALL_PERMISSION = 2;
     private Firebase fbs;
-    private TextView tvnameFur,tvOwner,tvColor,tvFurnum,tvPrice, tvPhone , tvmaterial;
+    private TextView tvnameFur,tvmaterial, tvPrice,tvFurCategory;
     private ImageView ivFurPhoto;
     private Button sendSMSButton, btnWhatsapp, btnCall;
     private Furniture myFur;
@@ -131,11 +131,8 @@ public class FurnitureDetailsFragment extends Fragment  {
         fbs= Firebase.getInstance();
         tvnameFur=getView().findViewById(R.id.tvNameFur);
         tvmaterial=getView().findViewById(R.id.tvmaterial);
-        tvOwner=getView().findViewById(R.id.tvOwnersDetailsFragment);
-        tvPhone=getView().findViewById(R.id.tvPhoneDetailsFragment);
-        tvFurnum=getView().findViewById(R.id.tvFurNumber);
-        tvColor = getView().findViewById(R.id.tvColorDetailsFragment);
-        tvPrice=getView().findViewById(R.id.tvPriceDetailsFragment);
+        tvFurCategory=getView().findViewById(R.id.tvFurCategory);
+        tvPrice=getView().findViewById(R.id.tvprice);
         ivFurPhoto = getView().findViewById(R.id.ivFurnitureDetailsFragment);
 
         Bundle args = getArguments();
@@ -146,10 +143,7 @@ public class FurnitureDetailsFragment extends Fragment  {
                 // Now you can use 'data' as needed in FragmentB
                 tvnameFur.setText(myFur.getName());
                 tvmaterial.setText(myFur.getMaterial());
-                tvOwner.setText(myFur.getOwner());
-                tvPhone.setText(myFur.getPhoneNum());
-                tvFurnum.setText(myFur.getNumOfFur());
-                tvColor.setText(myFur.getColor());
+                tvFurCategory.setText(myFur.getCategory());
                 tvPrice.setText(myFur.getPrice()+" ₪");
                 if (myFur.getPhoto() == null || myFur.getPhoto().isEmpty())
                 {
@@ -160,42 +154,15 @@ public class FurnitureDetailsFragment extends Fragment  {
                 }
             }
         }
-        sendSMSButton = getView().findViewById(R.id.btnSMS);
-        sendSMSButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAndSendSMS();            }
-        });
 
-        btnWhatsapp = getView().findViewById(R.id.btnWhatsApp);
-        btnWhatsapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendWhatsAppMessage(v);
 
-            }
-        });
-
-        btnCall = getView().findViewById(R.id.btnCall);
-        btnCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makePhoneCall();
-            }
-        });
     }
 
-    private void checkAndSendSMS() {
-        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), new String[]{android.Manifest.permission.SEND_SMS}, PERMISSION_SEND_SMS);
-        } else {
-            sendSMS();
-        }
-    }
+
 
     private void sendSMS() {
         String phoneNumber = myFur.getPhoneNum();
-        String message = "I am Interested in your  "+myFur.getName()+"  car: " + myFur.getNumOfFur();
+        String message = "I am Interested in your  "+myFur.getName()+"  fur: " + myFur.getNumOfFur();
 
         try {
             SmsManager smsManager = SmsManager.getDefault();

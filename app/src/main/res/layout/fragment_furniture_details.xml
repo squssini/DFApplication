@@ -30,49 +30,24 @@ android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btnSMS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SMS"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#6F7F8F"/>
-
-        <Button
-            android:id="@+id/btnWhatsApp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WhatsApp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#00E40E"/>
-
-        <Button
-            android:id="@+id/btnCall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Call"
-            android:backgroundTint="#6F7F8F"/>
-
-    </LinearLayout>
+        android:gravity="center"/>
 
     <!-- Car Name -->
     <TextView
         android:id="@+id/textView111"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Number of fur :"
         android:layout_marginTop="20dp"
-        android:textStyle="bold"/>
+        android:text="Category :"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvFurNumber"
+        android:id="@+id/tvFurCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
         android:layout_marginTop="-20dp"
-        android:hint="Fur Number" />
+        android:hint="Fur Category" />
 
     <TextView
         android:id="@+id/textView3"
@@ -92,80 +67,34 @@ android:layout_height="match_parent"
 
 
     <TextView
-        android:id="@+id/tvmaterial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Material:"
-        android:layout_marginTop="20dp"/>
-
-
-
-    <!-- Owners -->
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Owners:"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/tvOwnersDetailsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Owners"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"/>
-
-    <!-- Phone -->
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Phone Number :"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/tvPhoneDetailsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Owners"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"/>
-
-
-    <!-- Color -->
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Color :"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/tvColorDetailsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Color"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"/>
-
-    <!-- Price -->
-    <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:text="Material :"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvmaterial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="material"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="-20dp"/>
+
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Price:"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tvPriceDetailsFragment"
+        android:id="@+id/tvprice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Price"
