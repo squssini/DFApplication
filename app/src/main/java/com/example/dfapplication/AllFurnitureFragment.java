@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  */
 public class AllFurnitureFragment extends Fragment {
     private Firebase fbs;
-    private ArrayList<Furniture> Furs,filteredList;
+    private ArrayList<Furniture> Furs, filteredList;
     private RecyclerView rvFurs;
     private MyAdapter adapter;
     // TODO: Rename parameter arguments, choose names that match
@@ -94,7 +95,7 @@ public class AllFurnitureFragment extends Fragment {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                for (DocumentSnapshot dataSnapshot: queryDocumentSnapshots.getDocuments()){
+                for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
                     Furniture Fur = dataSnapshot.toObject(Furniture.class);
 
                     Furs.add(Fur);
@@ -106,26 +107,27 @@ public class AllFurnitureFragment extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-                Log.e("AllRestaurantsFragment", e.getMessage());
+                Log.e("AllFurnitureFragment", e.getMessage());
             }
         });
         adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(int position) {
-                // Handle item click here
-                Furniture fi = new Furniture(filteredList.get(position).getName(),filteredList.get(position).getPhoneNum(),filteredList.get(position).getColor(),
-                filteredList.get(position).getNumOfFur(),filteredList.get(position).getOwner(),filteredList.get(position).getMaterial(),filteredList.get(position).getPrice(),
-                        filteredList.get(position).getCategory(),filteredList.get(position).getPhoto());
-                String selectedItem="";
-                Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+            public void onItemClick(Furniture furniture) {
+                FurnitureDetailsFragment detailsFragment = new FurnitureDetailsFragment();
                 Bundle args = new Bundle();
-                args.putParcelable("fur", (Parcelable) filteredList.get(position)); // or use Parcelable for better performance
-                FurnitureDetailsFragment cd = new FurnitureDetailsFragment();
-                cd.setArguments(args);
-                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.main,cd);
-                ft.commit();
+                args.putParcelable("fur", furniture);
+                detailsFragment.setArguments(args);
+
+                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                transaction.replace(R.id.mainFragmentContainer, detailsFragment); // or R.id.main
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
+
+
+
+
+
     }
 }

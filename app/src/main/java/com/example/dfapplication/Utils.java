@@ -4,6 +4,7 @@ package com.example.dfapplication;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class Utils {
 
     private Firebase fbs;
     private String imageStr;
+    private Bundle seeDetailsBundle;
 
     public Utils()
     {
@@ -90,4 +92,7 @@ public class Utils {
     }
 
 
+    public void AddSeeDetailsBundlestring(String key, String message) {
+        this.seeDetailsBundle.putString(key,message);
+    }
 }

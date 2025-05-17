@@ -6,7 +6,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".pagess.AddFurnitureFragment">
+    tools:context=".FurnitureDetailsFragment">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -99,13 +99,7 @@ tools:context=".pagess.AddFurnitureFragment">
         android:text="Material:"
         android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:id="@+id/tvMaterial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Material"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"/>
+
 
     <!-- Owners -->
     <TextView

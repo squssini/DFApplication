@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -82,11 +84,21 @@ public class FurnitureDetailsFragment extends Fragment  {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_furniture_details, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_furniture_details, container, false);
+
+        Furniture furniture = getArguments().getParcelable("fur");
+
+        if (furniture != null) {
+            Log.d("FurnitureDetails", "Received: " + furniture.getName());
+            // set views here
+        } else {
+            Log.e("FurnitureDetails", "No furniture object received!");
+        }
+
+        return view;
     }
+
 
     @Override
     public void onStart() {
@@ -128,7 +140,7 @@ public class FurnitureDetailsFragment extends Fragment  {
 
         Bundle args = getArguments();
         if (args != null) {
-            myFur = args.getParcelable("car");
+            myFur = args.getParcelable("fur");
             if (myFur != null) {
                 //String data = myObject.getData();
                 // Now you can use 'data' as needed in FragmentB
@@ -258,6 +270,13 @@ public class FurnitureDetailsFragment extends Fragment  {
 
 
 
+
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        BottomNavigationView bottomNav = getActivity().findViewById(R.id.bottom_navigation);
+        if (bottomNav != null) bottomNav.setVisibility(View.VISIBLE);
     }
 
 

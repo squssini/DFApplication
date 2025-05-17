@@ -50,20 +50,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         else {
             Picasso.get().load(Fur.getPhoto()).into(holder.imageView);
         }
-        holder.tvName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Toast.makeText(getActivity(), "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
-                Bundle args = new Bundle();
-                args.putParcelable("fur", (Parcelable) Fur); // or use Parcelable for better performance
-                FurnitureDetailsFragment cd = new FurnitureDetailsFragment();
-                cd.setArguments(args);
-                FragmentTransaction ft=((MainActivity)context).getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.main,cd);
-                ft.commit();
+        holder.itemView.setOnClickListener(v -> {
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(Fur);  // pass clicked Furniture item
             }
         });
+
     }
 
     @Override
@@ -83,10 +75,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(Furniture furniture);
     }
+
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.itemClickListener = listener;
     }
+
 }
