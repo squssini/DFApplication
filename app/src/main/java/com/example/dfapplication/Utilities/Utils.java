@@ -12,11 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.dfapplication.Classes.Firebase;
+import com.example.dfapplication.Classes.Furniture;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Utils {
@@ -73,6 +76,13 @@ public class Utils {
         } else {
             Toast.makeText(context, "Please choose an image first", Toast.LENGTH_SHORT).show();
         }
+    }
+    private List<Furniture> cartList = new ArrayList<>();
+
+
+
+    public List<Furniture> getCartList() {
+        return cartList;
     }
 
 

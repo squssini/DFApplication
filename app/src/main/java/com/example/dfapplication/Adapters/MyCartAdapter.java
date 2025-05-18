@@ -10,13 +10,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dfapplication.Classes.Furniture;
 import com.example.dfapplication.Models.CartModel;
 import com.example.dfapplication.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder> {
+public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyViewHolder> {
     private Context context;
     private List<CartModel> cartList;
 
@@ -27,35 +28,45 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_cart_item, parent, false);
-        return new ViewHolder(view);
+        return new MyViewHolder(view); // ✅ Match class name
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CartModel item = cartList.get(position);
-        holder.name.setText(item.getName());
-        holder.price.setText("$" + item.getPrice());
-        holder.qty.setText("Qty: " + item.getQuantity());
-        Picasso.get().load(item.getImage()).into(holder.image);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        CartModel cartItem = cartList.get(position);
+
+        holder.cartItemName.setText("Name: " + cartItem.getName());
+        holder.cartItemPrice.setText("Price: " + cartItem.getPrice() + " ₪");
+        holder.cartItemQty.setText("Qty: " + cartItem.getQuantity());
+
+        if (cartItem.getImage() == null || cartItem.getImage().isEmpty()) {
+            Picasso.get().load(R.drawable.ic_launcher_background).into(holder.cartItemImage);
+        } else {
+            Picasso.get().load(cartItem.getImage()).into(holder.cartItemImage);
+        }
     }
+
+
 
     @Override
     public int getItemCount() {
         return cartList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, price, qty;
-        ImageView image;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        ImageView cartItemImage;
+        TextView cartItemName, cartItemPrice, cartItemQty;
 
-        public ViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.cartItemName);
-            price = itemView.findViewById(R.id.cartItemPrice);
-            qty = itemView.findViewById(R.id.cartItemQty);
-            image = itemView.findViewById(R.id.cartItemImage);
+            cartItemImage = itemView.findViewById(R.id.cartItemImage);
+            cartItemName = itemView.findViewById(R.id.cartItemName);
+            cartItemPrice = itemView.findViewById(R.id.cartItemPrice);
+            cartItemQty = itemView.findViewById(R.id.cartItemQty);
         }
     }
+
 }

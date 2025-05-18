@@ -21,9 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dfapplication.Classes.CartManager;
 import com.example.dfapplication.Classes.Firebase;
 import com.example.dfapplication.Classes.Furniture;
 import com.example.dfapplication.R;
+import com.example.dfapplication.Utilities.Utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -86,21 +88,24 @@ public class FurnitureDetailsFragment extends Fragment  {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_furniture_details, container, false);
 
-        Furniture furniture = getArguments().getParcelable("fur");
+        Furniture furniture = getArguments() != null ? getArguments().getParcelable("fur") : null;
 
         if (furniture != null) {
             Log.d("FurnitureDetails", "Received: " + furniture.getName());
-            // set views here
+            // Set your views here using furniture data
         } else {
             Log.e("FurnitureDetails", "No furniture object received!");
         }
 
         return view;
     }
+
+
 
 
     @Override
@@ -114,12 +119,16 @@ public class FurnitureDetailsFragment extends Fragment  {
             @Override
 
             public void onClick(View v) {
+                // Optional: Update image layout parameters if needed
                 ViewGroup.LayoutParams layoutParams = ivFurPhoto.getLayoutParams();
                 ivFurPhoto.setLayoutParams(layoutParams);
 
-
+                // Create a cart item from the current furniture
+                myFur.setCartQty(1); // Set default quantity to 1
+                CartManager.getInstance().addToCart(myFur); // Add to cart manager
 
             }
+
         });
 
 
@@ -160,6 +169,7 @@ public class FurnitureDetailsFragment extends Fragment  {
 
 
     }
+
 
 
 

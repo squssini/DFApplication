@@ -16,6 +16,8 @@ public class Furniture  implements Parcelable {
     private  String price;
     private  String category;
     private String photo;
+    private int cartQty = 1;
+
 
     public Furniture() {
     }
@@ -30,6 +32,13 @@ public class Furniture  implements Parcelable {
         this.price = price;
         this.category = category;
         this.photo = photo;
+    }
+    public int getCartQty() {
+        return cartQty;
+    }
+
+    public void setCartQty(int cartQty) {
+        this.cartQty = cartQty;
     }
 
     public String getPhoto() {

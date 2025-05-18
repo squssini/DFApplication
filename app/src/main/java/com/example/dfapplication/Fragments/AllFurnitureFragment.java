@@ -1,5 +1,6 @@
 package com.example.dfapplication.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.dfapplication.Activities.CartActivity;
+import com.example.dfapplication.Classes.CartManager;
 import com.example.dfapplication.Classes.Firebase;
 import com.example.dfapplication.Classes.Furniture;
 import com.example.dfapplication.Adapters.MyAdapter;
 import com.example.dfapplication.R;
+import com.example.dfapplication.Utilities.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -82,6 +86,7 @@ public class AllFurnitureFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_all_furniture, container, false);
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -89,47 +94,40 @@ public class AllFurnitureFragment extends Fragment {
         fbs = Firebase.getInstance();
         Furs = new ArrayList<>();
         rvFurs = getView().findViewById(R.id.rvFurnitureFurFragment);
+
         adapter = new MyAdapter(getActivity(), Furs);
         rvFurs.setAdapter(adapter);
         rvFurs.setHasFixedSize(true);
         rvFurs.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        // Set the Add to Cart click listener here
+        adapter.setOnCartClickListener(furniture -> {
+            CartManager.getInstance().addToCart(furniture); // ✅ correct way
+            Toast.makeText(getActivity(), furniture.getName() + " added to cart", Toast.LENGTH_SHORT).show();
+
+            // Start CartActivity to show cart
+            Intent intent = new Intent(getActivity(), CartActivity.class);
+            startActivity(intent);
+        });
+
         fbs.getFire().collection("furniture").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
                 for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
                     Furniture Fur = dataSnapshot.toObject(Furniture.class);
-
                     Furs.add(Fur);
                 }
-
                 adapter.notifyDataSetChanged();
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-                Log.e("AllFurnitureFragment", e.getMessage());
-            }
+        }).addOnFailureListener(e -> {
+            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+            Log.e("AllFurnitureFragment", e.getMessage());
         });
-        adapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Furniture furniture) {
-                FurnitureDetailsFragment detailsFragment = new FurnitureDetailsFragment();
-                Bundle args = new Bundle();
-                args.putParcelable("fur", furniture);
-                detailsFragment.setArguments(args);
+    }
 
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainFragmentContainer, detailsFragment); // or R.id.main
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
 
 
 
 
 
     }
-}
