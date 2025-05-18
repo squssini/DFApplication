@@ -3,6 +3,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,6 +55,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 itemClickListener.onItemClick(Fur);  // pass clicked Furniture item
             }
         });
+        holder.btnDetails.setOnClickListener(v -> {
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(Fur);  // same as itemView click
+            }
+        });
+
 
     }
 
@@ -65,11 +72,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvName, tvPrice ;
         ImageView imageView;
+        Button btnDetails;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName=itemView.findViewById(R.id.tvNameFurItem);
             tvPrice=itemView.findViewById(R.id.tvPriceFurItem);
             imageView=itemView.findViewById(R.id.imageView);
+            btnDetails = itemView.findViewById(R.id.btnDetails);
+
         }
     }
 
