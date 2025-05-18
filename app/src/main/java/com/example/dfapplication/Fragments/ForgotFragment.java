@@ -1,4 +1,4 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dfapplication.Classes.Firebase;
+import com.example.dfapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 

@@ -1,4 +1,4 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Models;
 
 public class CartModel {
     private String name;

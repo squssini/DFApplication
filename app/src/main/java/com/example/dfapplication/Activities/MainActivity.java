@@ -1,4 +1,4 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Activities;
 
 import android.os.Bundle;
 
@@ -7,7 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentTransaction;
+
+import com.example.dfapplication.Fragments.AllFurnitureFragment;
+import com.example.dfapplication.Fragments.LoginFragment;
+import com.example.dfapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 

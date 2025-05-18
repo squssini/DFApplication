@@ -2,4 +2,5 @@
 <resources>
     <item name="frameLayoutMain" type="id" />
     <item name="bottom_navigation" type="id" />
+    <item name="backgroundImage" type="id" />
 </resources>

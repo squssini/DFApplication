@@ -1,13 +1,10 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Classes;
 
 import android.net.Uri;
-
-import androidx.annotation.NonNull;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class Firebase {
     private static Firebase instance;

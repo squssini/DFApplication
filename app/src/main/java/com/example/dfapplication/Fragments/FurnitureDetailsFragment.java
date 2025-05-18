@@ -1,4 +1,4 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Fragments;
 
 import android.Manifest;
 import android.content.Intent;
@@ -21,6 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dfapplication.Classes.Firebase;
+import com.example.dfapplication.Classes.Furniture;
+import com.example.dfapplication.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 

@@ -1,10 +1,9 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
 public class Furniture  implements Parcelable {
 

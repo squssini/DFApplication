@@ -1,4 +1,4 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Fragments;
 
 import android.os.Bundle;
 
@@ -8,16 +8,18 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.dfapplication.Classes.Firebase;
+import com.example.dfapplication.Classes.Furniture;
+import com.example.dfapplication.Adapters.MyAdapter;
+import com.example.dfapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 

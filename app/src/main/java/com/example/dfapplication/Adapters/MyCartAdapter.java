@@ -1,4 +1,4 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,12 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.dfapplication.Models.CartModel;
+import com.example.dfapplication.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

@@ -1,30 +1,20 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Activities;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.dfapplication.Models.CartModel;
+import com.example.dfapplication.Fragments.Checkout_Card_Details;
+import com.example.dfapplication.Adapters.MyCartAdapter;
+import com.example.dfapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;

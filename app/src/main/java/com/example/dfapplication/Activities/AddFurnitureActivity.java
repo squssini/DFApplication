@@ -1,7 +1,8 @@
-package com.example.dfapplication;
+package com.example.dfapplication.Activities;
 
 import static android.app.PendingIntent.getActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,9 +18,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dfapplication.Classes.Firebase;
+import com.example.dfapplication.Classes.Furniture;
+import com.example.dfapplication.R;
+import com.example.dfapplication.Utilities.Utils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
+import com.squareup.picasso.Picasso;
 
 public class AddFurnitureActivity extends AppCompatActivity {
 
@@ -35,13 +41,7 @@ public class AddFurnitureActivity extends AppCompatActivity {
     private Utils utils;
     private TextView InsertImge;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_add_furniture); // Consider renaming the layout to activity_add_furniture.xml
 
-        connectComponents();
-    }
 
     private void connectComponents() {
         etmaterial = findViewById(R.id.etMaterial);
@@ -113,21 +113,32 @@ public class AddFurnitureActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_furniture);
+        connectComponents();
+        btnAdd.setEnabled(false); // disable add button initially
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        try {
-            if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-                Uri selectedImageUri = data.getData();
-                img.setImageURI(selectedImageUri);
-                utils.uploadImage(this, selectedImageUri);
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            Uri selectedImageUri = data.getData();
+            img.setImageURI(selectedImageUri);
 
-
-            }
-        } catch (Exception ex) {
-            Log.e("SHAHED1", ex.getMessage());
+            // Use new uploadImage with callback
+            utils.uploadImage(this, selectedImageUri, new Utils.OnImageUploadedListener() {
+                @Override
+                public void onImageUploaded(Uri uri) {
+                    runOnUiThread(() -> btnAdd.setEnabled(true)); // enable add button when image uploaded
+                }
+            });
         }
     }
+
+
     private void gotoAllFurnitureActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("loadFragment", "allFurniture");
