@@ -10,6 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.dfapplication.Fragments.AllFurnitureFragment;
 import com.example.dfapplication.Fragments.LoginFragment;
+import com.example.dfapplication.HomeFragment;
 import com.example.dfapplication.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,11 +33,26 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.mainFragmentContainer, new AllFurnitureFragment())
                         .commit();
+            } else if ("home".equals(loadFragment)) {
+                HomeFragment homeFragment = new HomeFragment();
+
+                // Pass the message from intent to the fragment
+                String message = getIntent().getStringExtra("message");
+                if (message != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("orderMessage", message);
+                    homeFragment.setArguments(bundle);
+                }
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.mainFragmentContainer, homeFragment)
+                        .commit();
             } else {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.mainFragmentContainer, new LoginFragment())
                         .commit();
             }
+
         }
     }
 

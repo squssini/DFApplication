@@ -1,5 +1,6 @@
 package com.example.dfapplication.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.dfapplication.Activities.MainActivity;
 import com.example.dfapplication.R;
 
 /**
@@ -35,8 +37,16 @@ public class Checkout_Card_Details extends Fragment {
         btnConfirm = view.findViewById(R.id.btnConfirmCheckout);
 
         btnConfirm.setOnClickListener(v -> {
-            Toast.makeText(getActivity(), "Checkout Complete!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Order placed", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.putExtra("loadFragment", "home");
+            intent.putExtra("message", "Order placed");
+            startActivity(intent);
+
+            requireActivity().finish();
         });
+
 
         return view;
     }
