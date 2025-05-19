@@ -109,7 +109,7 @@ public class LoginFragment extends Fragment {
                 //Data Validation
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-                if (username.trim().isEmpty() && password.trim().isEmpty()){
+                if (username.trim().isEmpty() || password.trim().isEmpty()){
                     Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }

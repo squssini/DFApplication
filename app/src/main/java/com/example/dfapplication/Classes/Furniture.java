@@ -113,17 +113,6 @@ public class Furniture  implements Parcelable {
         this.name = name;
     }
 
-    protected Furniture(Parcel in) {
-        name = in.readString();
-        phoneNum = in.readString();
-        color = in.readString();
-        numOfFur = in.readString();
-        owner = in.readString();
-        material = in.readString();
-        price = in.readString();
-        category = in.readString();
-        photo = in.readString();
-    }
 
     public static final Creator<Furniture> CREATOR = new Creator<Furniture>() {
         @Override
@@ -142,6 +131,19 @@ public class Furniture  implements Parcelable {
         return 0;
     }
 
+    protected Furniture(Parcel in) {
+        name = in.readString();
+        phoneNum = in.readString();
+        color = in.readString();
+        numOfFur = in.readString();
+        owner = in.readString();
+        material = in.readString();
+        price = in.readString();
+        category = in.readString();
+        photo = in.readString();
+        cartQty = in.readInt();  // <-- add this
+    }
+
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(name);
@@ -153,7 +155,9 @@ public class Furniture  implements Parcelable {
         dest.writeString(price);
         dest.writeString(category);
         dest.writeString(photo);
+        dest.writeInt(cartQty); // <-- add this
     }
+
 
     @Override
     public String toString() {

@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
     <!-- Cart UI container -->
     <LinearLayout
@@ -18,16 +19,20 @@
             android:id="@+id/total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="Total: $0"
-            android:textSize="18sp"
-            android:layout_margin="16dp"/>
-
+            android:textSize="18sp" />
         <Button
             android:id="@+id/btn_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="Checkout"
-            android:layout_margin="16dp"/>
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:backgroundTint="#F5F5DC" />
+
     </LinearLayout>
 
     <!-- Fragment container (initially hidden) -->
@@ -35,5 +40,5 @@
         android:id="@+id/cart_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 </RelativeLayout>

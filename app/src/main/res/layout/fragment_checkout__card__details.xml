@@ -1,32 +1,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="vertical"
-android:padding="20dp"
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<EditText
-    android:id="@+id/etCardNumber"
-    android:hint="Card Number"
-    android:inputType="number"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-<EditText
-    android:id="@+id/etExpiry"
-    android:hint="MM/YY"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    <!-- Card Number -->
+    <EditText
+        android:id="@+id/etCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Card Number"
+        android:paddingBottom="10dp"
+        android:textSize="16sp"
+        android:inputType="number"
+        android:layout_marginBottom="16dp" />
 
-<EditText
-    android:id="@+id/etCVV"
-    android:hint="CVV"
-    android:inputType="numberPassword"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    <!-- Expiry -->
+    <EditText
+        android:id="@+id/etExpiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="MM/YY"
+        android:paddingBottom="10dp"
+        android:textSize="16sp"
+        android:inputType="text"
+        android:layout_marginBottom="16dp" />
 
-<Button
-    android:id="@+id/btnConfirmCheckout"
-    android:text="Confirm Payment"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"/>
+    <!-- CVV -->
+    <EditText
+        android:id="@+id/etCVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CVV"
+        android:paddingBottom="10dp"
+        android:textSize="16sp"
+        android:inputType="numberPassword"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Confirm Payment Button (Beige & Styled) -->
+    <Button
+        android:id="@+id/btnConfirmCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm Payment"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:backgroundTint="#F5F5DC"
+        android:elevation="2dp"
+        android:paddingVertical="12dp"
+        android:textSize="16sp" />
 </LinearLayout>

@@ -1,109 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-android:id="@+id/scrollView"
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-    tools:context=".Fragments.FurnitureDetailsFragment">
-
-<LinearLayout
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <!-- ImageView for Car Image -->
-
-    <!-- Buttons for SMS, WhatsApp, and Call -->
-    <ImageView
-        android:id="@+id/ivFurnitureDetailsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:clickable="true"
-        android:contentDescription="Fur Image"
-        android:onClick="toBigImg"
-        android:scaleType="fitCenter" />
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".Fragments.FurnitureDetailsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"/>
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <!-- Car Name -->
-    <TextView
-        android:id="@+id/textView111"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Category :"
-        android:textStyle="bold" />
+        <!-- ImageView for Car Image -->
 
-    <TextView
-        android:id="@+id/tvFurCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"
-        android:hint="Fur Category" />
+        <!-- Buttons for SMS, WhatsApp, and Call -->
+        <ImageView
+            android:id="@+id/ivFurnitureDetailsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:clickable="true"
+            android:contentDescription="Fur Image"
+            android:onClick="toBigImg"
+            android:scaleType="fitCenter" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:text="Name of Fur :"
-        android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" />
 
-    <TextView
-        android:id="@+id/tvNameFur"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name of Fur"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"/>
+        <!-- Car Name -->
+        <TextView
+            android:id="@+id/textView111"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Category :"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvFurCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="-20dp"
+            android:hint="Fur Category" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:text="Name of Fur :"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvNameFur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="-20dp"
+            android:hint="Name of Fur" />
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:text="Material :"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:text="Material :"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvmaterial"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="material"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"/>
+        <TextView
+            android:id="@+id/tvmaterial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="-20dp"
+            android:hint="material" />
 
 
-    <TextView
-        android:id="@+id/tvPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Price:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Price:"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tvprice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Price"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="-20dp"/>
+        <TextView
+            android:id="@+id/tvprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="-20dp"
+            android:hint="Price"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
 
-    <!-- Buttons for actions -->
+        <!-- Buttons for actions -->
 
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>

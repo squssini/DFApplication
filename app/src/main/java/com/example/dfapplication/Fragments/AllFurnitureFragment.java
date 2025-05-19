@@ -36,15 +36,13 @@ import java.util.ArrayList;
  */
 public class AllFurnitureFragment extends Fragment {
     private Firebase fbs;
-    private ArrayList<Furniture> Furs, filteredList;
+    private ArrayList<Furniture> Furs;
     private RecyclerView rvFurs;
     private MyAdapter adapter;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -52,15 +50,6 @@ public class AllFurnitureFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AllFurnitureFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static AllFurnitureFragment newInstance(String param1, String param2) {
         AllFurnitureFragment fragment = new AllFurnitureFragment();
         Bundle args = new Bundle();
@@ -86,7 +75,6 @@ public class AllFurnitureFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_all_furniture, container, false);
     }
 
-
     @Override
     public void onStart() {
         super.onStart();
@@ -100,34 +88,45 @@ public class AllFurnitureFragment extends Fragment {
         rvFurs.setHasFixedSize(true);
         rvFurs.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        // Set the Add to Cart click listener here
+        // Cart click listener
         adapter.setOnCartClickListener(furniture -> {
-            CartManager.getInstance().addToCart(furniture); // ✅ correct way
+            CartManager.getInstance().addToCart(furniture);
             Toast.makeText(getActivity(), furniture.getName() + " added to cart", Toast.LENGTH_SHORT).show();
 
-            // Start CartActivity to show cart
             Intent intent = new Intent(getActivity(), CartActivity.class);
             startActivity(intent);
         });
 
-        fbs.getFire().collection("furniture").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
-                    Furniture Fur = dataSnapshot.toObject(Furniture.class);
-                    Furs.add(Fur);
-                }
-                adapter.notifyDataSetChanged();
-            }
-        }).addOnFailureListener(e -> {
-            Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
-            Log.e("AllFurnitureFragment", e.getMessage());
+        // Details click listener - respond to item click (which includes Details button click)
+        adapter.setOnDetailsClickListener(furniture -> {
+            FurnitureDetailsFragment detailsFragment = new FurnitureDetailsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("fur", furniture);
+            detailsFragment.setArguments(bundle);
+
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.mainFragmentContainer, detailsFragment)
+                    .addToBackStack(null)
+                    .commit();
         });
+
+
+        // Load furniture from Firebase
+        fbs.getFire().collection("furniture").get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot dataSnapshot : queryDocumentSnapshots.getDocuments()) {
+                        Furniture fur = dataSnapshot.toObject(Furniture.class);
+                        if (fur != null) {
+                            Furs.add(fur);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getActivity(), "No data available", Toast.LENGTH_SHORT).show();
+                    Log.e("AllFurnitureFragment", e.getMessage());
+                });
     }
 
-
-
-
-
-
-    }
+}

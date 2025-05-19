@@ -16,6 +16,7 @@ import com.example.dfapplication.Activities.CartActivity;
 import com.example.dfapplication.Classes.CartManager;
 import com.example.dfapplication.Classes.Firebase;
 import com.example.dfapplication.Classes.Furniture;
+import com.example.dfapplication.Fragments.FurnitureDetailsFragment;
 import com.example.dfapplication.R;
 import com.squareup.picasso.Picasso;
 
@@ -26,12 +27,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     ArrayList<Furniture> FurList;
     private Firebase fbs;
     private OnItemClickListener itemClickListener;
+    private OnDetailsClickListener detailsClickListener;
+
+    public void setOnDetailsClickListener(OnDetailsClickListener listener) {
+        this.detailsClickListener = listener;
+    }
+
 
     public MyAdapter(Context context, ArrayList<Furniture> restList) {
         this.context = context;
         this.FurList = restList;
         this.fbs = Firebase.getInstance();
     }
+
 
     @NonNull
     @Override
@@ -59,11 +67,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 itemClickListener.onItemClick(Fur);  // pass clicked Furniture item
             }
         });
-        holder.btnDetails.setOnClickListener(v -> {
-            if (itemClickListener != null) {
-                itemClickListener.onItemClick(Fur);  // same as itemView click
-            }
-        });
 
         holder.btnAddToCart.setOnClickListener(v -> {
             CartManager.getInstance().addToCart(Fur); // Use CartManager instead of Utils
@@ -73,6 +76,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Intent intent = new Intent(context, CartActivity.class);
             context.startActivity(intent);
         });
+        holder.btnDetails.setOnClickListener(v -> {
+            if (detailsClickListener != null) {
+                detailsClickListener.onDetailsClick(Fur);
+            }
+        });
+
 
 
     }
@@ -84,6 +93,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public void setOnCartClickListener(OnCartClickListener listener) {
         this.cartClickListener = listener;
+    }
+    public interface OnDetailsClickListener {
+        void onDetailsClick(Furniture furniture);
     }
 
     @Override
