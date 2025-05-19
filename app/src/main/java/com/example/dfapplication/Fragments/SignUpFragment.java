@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,37 +90,37 @@ public class SignUpFragment extends Fragment {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Data Validation
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                if (username.trim().isEmpty() && password.trim().isEmpty()){
-                    Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
+                String username = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(getActivity(), "Some fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                // Signup procedure
-                fbs.getAuth().createUserWithEmailAndPassword(username,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(getActivity(), "Successfully signed up ", Toast.LENGTH_SHORT).show();
-                        gotoAddFurnitureActivity();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
+                fbs.getAuth().createUserWithEmailAndPassword(username, password)
+                        .addOnSuccessListener(authResult -> {
+                            Toast.makeText(getActivity(), "Successfully signed up", Toast.LENGTH_SHORT).show();
+                            gotoHomeFragment();
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        });
             }
         });
-
     }
 
-    private void gotoAddFurnitureActivity() {
+   /* private void gotoAddFurnitureActivity() {
         Intent intent = new Intent(getActivity(), AddFurnitureActivity.class);
         startActivity(intent);
         requireActivity().finish();
-    }
+    }*/
 
-
+private void gotoHomeFragment() {
+    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+    ft.replace(R.id.mainFragmentContainer, new HomeFragment());
+    ft.addToBackStack(null); // Optional: lets user press back to return to login
+    ft.commit();
+}
 }

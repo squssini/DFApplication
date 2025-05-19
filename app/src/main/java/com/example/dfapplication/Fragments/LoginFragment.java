@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.dfapplication.Classes.Firebase;
 import com.example.dfapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 
 /**
@@ -90,63 +92,76 @@ public class LoginFragment extends Fragment {
         btnLogin = getView().findViewById(R.id.btnLoginLogin);
         tvSignupLink = getView().findViewById(R.id.tvSignupLinkLogin);
         tvForgotLink = getView().findViewById(R.id.tvForgotLinkLogin);
+
         tvSignupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gotoSignUpFragment();
-
             }
         });
+
         tvForgotLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 gotoForgotFragment();
             }
         });
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Data Validation
+                // Data Validation
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-                if (username.trim().isEmpty() || password.trim().isEmpty()){
+                if (username.trim().isEmpty() || password.trim().isEmpty()) {
                     Toast.makeText(getActivity(), "some fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Login procedure
-                fbs.getAuth().signInWithEmailAndPassword(username,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                fbs.getAuth().signInWithEmailAndPassword(username, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "Successfully logged in ", Toast.LENGTH_SHORT).show();
-                        gotoAddFurnitureActivity();
-
+                        gotoHomeFragment();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.e("LoginError", "Login failed", e);
                     }
                 });
-
             }
         });
 
-    }
-    private void gotoAddFurnitureActivity() {
-        Intent intent = new Intent(getActivity(), AddFurnitureActivity.class);
-        startActivity(intent);
-    }
 
-    private void gotoSignUpFragment() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainFragmentContainer, new SignUpFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+        }
 
-    private void gotoForgotFragment() {
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main, new ForgotFragment());
-        ft.commit();
-    }
-}
+
+
+
+
+               /* private void gotoAddFurnitureActivity () {
+                    Intent intent = new Intent(getActivity(), AddFurnitureActivity.class);
+                    startActivity(intent);
+                }*/
+               private void gotoHomeFragment() {
+                   FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                   ft.replace(R.id.mainFragmentContainer, new HomeFragment());
+                   ft.addToBackStack(null); // Optional: lets user press back to return to login
+                   ft.commit();
+               }
+
+                private void gotoSignUpFragment () {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.mainFragmentContainer, new SignUpFragment());
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
+
+                private void gotoForgotFragment () {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.main, new ForgotFragment());
+                    ft.commit();
+                }
+            }

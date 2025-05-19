@@ -10,7 +10,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.dfapplication.Fragments.AllFurnitureFragment;
 import com.example.dfapplication.Fragments.LoginFragment;
-import com.example.dfapplication.HomeFragment;
+import com.example.dfapplication.Fragments.HomeFragment;
 import com.example.dfapplication.R;
 
 public class MainActivity extends AppCompatActivity {
