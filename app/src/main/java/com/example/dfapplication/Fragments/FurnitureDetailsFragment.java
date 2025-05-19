@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -93,11 +94,16 @@ public class FurnitureDetailsFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_furniture_details, container, false);
 
+        // ✅ BACK BUTTON HANDLING
+        ImageButton btnBack = view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        });
+
         Furniture furniture = getArguments() != null ? getArguments().getParcelable("fur") : null;
 
         if (furniture != null) {
             Log.d("FurnitureDetails", "Received: " + furniture.getName());
-            // Set your views here using furniture data
         } else {
             Log.e("FurnitureDetails", "No furniture object received!");
         }
