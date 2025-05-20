@@ -7,6 +7,16 @@
     android:orientation="vertical"
     android:padding="24dp">
 
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="148dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Dream Furniture Logo"
+        android:src="@drawable/logo" />
+
     <TextView
         android:id="@+id/orderPlacedText"
         android:layout_width="wrap_content"
