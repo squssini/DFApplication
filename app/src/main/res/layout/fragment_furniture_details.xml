@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Category :"
+            android:text="Color :"
             android:textStyle="bold" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
-            android:text="Name of Fur :"
+            android:text="Category :"
             android:textStyle="bold" />
 
         <TextView

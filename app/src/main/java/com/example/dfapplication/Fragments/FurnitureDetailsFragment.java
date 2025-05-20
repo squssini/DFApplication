@@ -41,7 +41,6 @@ public class FurnitureDetailsFragment extends Fragment  {
     private Firebase fbs;
     private TextView tvnameFur,tvmaterial, tvPrice,tvFurCategory;
     private ImageView ivFurPhoto;
-    private Button sendSMSButton, btnWhatsapp, btnCall;
     private Furniture myFur;
 
     private boolean isEnlarged = false; //משתנה כדי לעקוב אחרי המצב הנוכחי של התמונה (האם היא מגודלת או לא)
@@ -179,85 +178,20 @@ public class FurnitureDetailsFragment extends Fragment  {
 
 
 
-    private void sendSMS() {
-        String phoneNumber = myFur.getPhoneNum();
-        String message = "I am Interested in your  "+myFur.getName()+"  fur: " + myFur.getNumOfFur();
-
-        try {
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNumber, null, message, null, null);
-            Toast.makeText(getActivity(), "SMS sent.", Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-            Toast.makeText(getActivity(), "SMS sending failed.", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_SEND_SMS) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                sendSMS();
-            } else {
-                Toast.makeText(requireContext(), "Permission denied. Cannot send SMS.", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        if (requestCode == REQUEST_CALL_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startCall();
-            }
-        }
-    }
-    // TODO : check Phone number is not correct;
-    public void sendWhatsAppMessage(View view) {
-
-        String smsNumber = "+972"+myFur.getPhoneNum();
-        Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        //  Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
-        sendIntent.setType("text/plain");
-        sendIntent.putExtra(Intent.EXTRA_TEXT, " I am Interested in your  " +myFur.getName()+ "  car:  "  + myFur.getNumOfFur());
-        sendIntent.putExtra("jid", smsNumber + "@s.whatsapp.net"); //phone number without "+" prefix
-        sendIntent.setPackage("com.whatsapp");
-
-        startActivity(sendIntent);
-    }
-    //  888 whatsapp setting
-    private boolean isAppInstalled(String s) {
-        PackageManager packageManager= getActivity().getPackageManager();
-        boolean is_installed;
-        try{
-            packageManager.getPackageInfo(s,PackageManager.GET_ACTIVITIES);
-            is_installed=true;
-        } catch (PackageManager.NameNotFoundException e) {
-            is_installed=false;
-            throw new RuntimeException(e);
-        }
-        return  is_installed;
-    }
-
-    private void makePhoneCall() {
-        if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
-        } else {
-            startCall();
-        }
-
-    }
-
-    private void startCall() {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:" + myFur.getPhoneNum()));
-
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-            startActivity(callIntent);
-        }
 
 
 
 
-    }
+
+
+
+
+
+
+
+
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

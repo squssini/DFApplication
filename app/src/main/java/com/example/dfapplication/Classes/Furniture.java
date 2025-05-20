@@ -8,10 +8,6 @@ import androidx.annotation.NonNull;
 public class Furniture  implements Parcelable {
 
     private String name;
-    private String phoneNum;
-    private String color;
-    private String numOfFur;
-    private String owner;
     private  String material;
     private  String price;
     private  String category;
@@ -22,12 +18,8 @@ public class Furniture  implements Parcelable {
     public Furniture() {
     }
 
-    public Furniture(String name, String phoneNum, String color, String numOfFur, String owner, String material, String price, String category, String photo) {
+    public Furniture(String name, String material, String price, String category, String photo) {
         this.name = name;
-        this.phoneNum = phoneNum;
-        this.color = color;
-        this.numOfFur = numOfFur;
-        this.owner = owner;
         this.material = material;
         this.price = price;
         this.category = category;
@@ -73,37 +65,6 @@ public class Furniture  implements Parcelable {
         this.material = material;
     }
 
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public String getNumOfFur() {
-        return numOfFur;
-    }
-
-    public void setNumOfFur(String numOfFur) {
-        this.numOfFur = numOfFur;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getPhoneNum() {
-        return phoneNum;
-    }
-
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum;
-    }
 
     public String getName() {
         return name;
@@ -133,10 +94,6 @@ public class Furniture  implements Parcelable {
 
     protected Furniture(Parcel in) {
         name = in.readString();
-        phoneNum = in.readString();
-        color = in.readString();
-        numOfFur = in.readString();
-        owner = in.readString();
         material = in.readString();
         price = in.readString();
         category = in.readString();
@@ -147,10 +104,6 @@ public class Furniture  implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeString(phoneNum);
-        dest.writeString(color);
-        dest.writeString(numOfFur);
-        dest.writeString(owner);
         dest.writeString(material);
         dest.writeString(price);
         dest.writeString(category);
@@ -163,10 +116,7 @@ public class Furniture  implements Parcelable {
     public String toString() {
         return "Furniture{" +
                 "name='" + name + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", color='" + color + '\'' +
-                ", numOfFur='" + numOfFur + '\'' +
-                ", owner='" + owner + '\'' +
+                ", phoneNum='" + '\'' +
                 ", material='" + material + '\'' +
                 ", price='" + price + '\'' +
                 ", category='" + category + '\'' +

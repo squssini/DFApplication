@@ -70,9 +70,9 @@ public class AddFurnitureActivity extends AppCompatActivity {
 
                 Furniture furniture;
                 if (fbs.getSelectedImageURL() == null) {
-                    furniture = new Furniture(name, "", "", "", "", material, price, category, "");
+                    furniture = new Furniture(name,  material, price, category, "");
                 } else {
-                    furniture = new Furniture(name, "", "", "", "", material, price, category, fbs.getSelectedImageURL().toString());
+                    furniture = new Furniture(name,  material, price, category, fbs.getSelectedImageURL().toString());
                 }
 
                 fbs.getFire().collection("furniture").add(furniture)
