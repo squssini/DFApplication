@@ -23,23 +23,25 @@
             android:layout_margin="16dp"
             android:text="Total: $0"
             android:textSize="18sp" />
+
         <Button
             android:id="@+id/btn_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:backgroundTint="#F5F5DC"
             android:text="Checkout"
             android:textColor="#000000"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:backgroundTint="#F5F5DC" />
+            android:textStyle="bold" />
+
         <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="12dp"
-            android:src="@drawable/ic_arrow_back"   />
+            android:src="@drawable/ic_arrow_back" />
 
     </LinearLayout>
 

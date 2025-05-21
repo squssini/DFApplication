@@ -178,20 +178,6 @@ public class FurnitureDetailsFragment extends Fragment  {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
