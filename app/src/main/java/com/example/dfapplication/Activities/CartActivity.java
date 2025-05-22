@@ -52,7 +52,7 @@ public class CartActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        totalPriceText.setText("Total: $" + total);
+        totalPriceText.setText("Total: ₪" + total);
 
         // Back button: go back to MainActivity with AllFurnitureFragment
         btnBack.setOnClickListener(v -> {
