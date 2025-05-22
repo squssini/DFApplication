@@ -102,7 +102,7 @@ public class FurnitureDetailsFragment extends Fragment  {
         Furniture furniture = getArguments() != null ? getArguments().getParcelable("fur") : null;
 
         if (furniture != null) {
-            Log.d("FurnitureDetails", "Received: " + furniture.getName());
+            Log.d("FurnitureDetails", "Received: " + furniture.getCategory());
         } else {
             Log.e("FurnitureDetails", "No furniture object received!");
         }
@@ -158,9 +158,9 @@ public class FurnitureDetailsFragment extends Fragment  {
             if (myFur != null) {
                 //String data = myObject.getData();
                 // Now you can use 'data' as needed in FragmentB
-                tvnameFur.setText(myFur.getName());
+                tvnameFur.setText(myFur.getCategory());
                 tvmaterial.setText(myFur.getMaterial());
-                tvFurCategory.setText(myFur.getCategory());
+                tvFurCategory.setText(myFur.getColor());
                 tvPrice.setText(myFur.getPrice()+" ₪");
                 if (myFur.getPhoto() == null || myFur.getPhoto().isEmpty())
                 {

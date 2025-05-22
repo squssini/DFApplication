@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 public class Furniture  implements Parcelable {
 
-    private String name;
+    private String color;
     private  String material;
     private  String price;
     private  String category;
@@ -18,8 +18,8 @@ public class Furniture  implements Parcelable {
     public Furniture() {
     }
 
-    public Furniture(String name, String material, String price, String category, String photo) {
-        this.name = name;
+    public Furniture(String color, String material, String price, String category, String photo) {
+        this.color = color;
         this.material = material;
         this.price = price;
         this.category = category;
@@ -66,12 +66,12 @@ public class Furniture  implements Parcelable {
     }
 
 
-    public String getName() {
-        return name;
+    public String getColor() {
+        return color;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setColor(String color) {
+        this.color = color;
     }
 
 
@@ -93,7 +93,7 @@ public class Furniture  implements Parcelable {
     }
 
     protected Furniture(Parcel in) {
-        name = in.readString();
+        color = in.readString();
         material = in.readString();
         price = in.readString();
         category = in.readString();
@@ -103,7 +103,7 @@ public class Furniture  implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(name);
+        dest.writeString(color);
         dest.writeString(material);
         dest.writeString(price);
         dest.writeString(category);
@@ -115,7 +115,7 @@ public class Furniture  implements Parcelable {
     @Override
     public String toString() {
         return "Furniture{" +
-                "name='" + name + '\'' +
+                "color='" + color + '\'' +
                 ", phoneNum='" + '\'' +
                 ", material='" + material + '\'' +
                 ", price='" + price + '\'' +

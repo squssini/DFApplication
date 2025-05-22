@@ -91,7 +91,7 @@ public class AllFurnitureFragment extends Fragment {
         // Cart click listener
         adapter.setOnCartClickListener(furniture -> {
             CartManager.getInstance().addToCart(furniture);
-            Toast.makeText(getActivity(), furniture.getName() + " added to cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), furniture.getCategory() + " added to cart", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(getActivity(), CartActivity.class);
             startActivity(intent);

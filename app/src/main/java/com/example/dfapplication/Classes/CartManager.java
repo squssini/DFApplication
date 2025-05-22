@@ -21,7 +21,7 @@ public class CartManager {
     // Convert Furniture to CartModel before adding
     public void addToCart(Furniture item) {
         CartModel cartModel = new CartModel(
-                item.getName(),
+                item.getCategory(),
                 item.getPhoto(),
                 item.getPrice(),
                 1  // default quantity is 1, or use item.getCartQty() if available

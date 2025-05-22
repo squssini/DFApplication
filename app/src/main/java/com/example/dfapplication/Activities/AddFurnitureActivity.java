@@ -57,22 +57,22 @@ public class AddFurnitureActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name, category, material, price;
-                name = etName.getText().toString();
-                category = etCategory.getText().toString();
+                String color, category, material, price;
+                category = etName.getText().toString();
+                color = etCategory.getText().toString();
                 price = etPrice.getText().toString();
                 material = etmaterial.getText().toString();
 
-                if (name.trim().isEmpty() || category.trim().isEmpty() || price.trim().isEmpty() || material.trim().isEmpty()) {
+                if (category.trim().isEmpty() || color.trim().isEmpty() || price.trim().isEmpty() || material.trim().isEmpty()) {
                     Toast.makeText(AddFurnitureActivity.this, "Some fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 Furniture furniture;
                 if (fbs.getSelectedImageURL() == null) {
-                    furniture = new Furniture(name,  material, price, category, "");
+                    furniture = new Furniture(color,  material, price, category, "");
                 } else {
-                    furniture = new Furniture(name,  material, price, category, fbs.getSelectedImageURL().toString());
+                    furniture = new Furniture(color,  material, price, category, fbs.getSelectedImageURL().toString());
                 }
 
                 fbs.getFire().collection("furniture").add(furniture)
@@ -117,7 +117,7 @@ public class AddFurnitureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_furniture);
         connectComponents();
-        btnAdd.setEnabled(false); // disable add button initially
+       btnAdd.setEnabled(false); // disable add button initially
     }
 
     @Override

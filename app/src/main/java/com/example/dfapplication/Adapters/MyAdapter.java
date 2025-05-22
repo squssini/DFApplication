@@ -51,7 +51,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
         Furniture Fur = FurList.get(position);
-        holder.tvName.setText(Fur.getName());
+        holder.tvName.setText(Fur.getCategory());
         holder.tvPrice.setText(Fur.getPrice());
 
 
@@ -70,7 +70,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.btnAddToCart.setOnClickListener(v -> {
             CartManager.getInstance().addToCart(Fur); // Use CartManager instead of Utils
-            Toast.makeText(context, Fur.getName() + " added to cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, Fur.getColor() + " added to cart", Toast.LENGTH_SHORT).show();
 
             // Navigate to CartActivity
             Intent intent = new Intent(context, CartActivity.class);
