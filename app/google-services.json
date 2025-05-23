@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "48841089570",
+    "project_id": "dfapplication-2771e",
+    "storage_bucket": "dfapplication-2771e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48841089570:android:c1ac718c45a960ba94607b",
+        "android_client_info": {
+          "package_name": "com.example.dfapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ECN2oLKuXO9zDCCuef653fPfK6Ool8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
