@@ -1,17 +1,24 @@
 package com.example.dfapplication.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.dfapplication.Activities.CartActivity;
+import com.example.dfapplication.Activities.MainActivity;
 import com.example.dfapplication.Classes.Firebase;
 import com.example.dfapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +34,8 @@ public class ForgotFragment extends Fragment {
     private Firebase fbs;
     private EditText etEmail;
     private Button btnReset;
+    private ImageButton btnBack;
+
     // TODO: Rename par ameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,6 +67,7 @@ public class ForgotFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,38 +75,49 @@ public class ForgotFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_forgot, container, false);
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        fbs =Firebase.getInstance();
-        etEmail = getView().findViewById(R.id.etEmailForgotPassword);
-        btnReset = getView().findViewById(R.id.btnResetForgotPassword);
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fbs.getAuth().sendPasswordResetEmail(etEmail.getText().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
-                                    Toast.makeText(getActivity(), "Check your Email", Toast.LENGTH_SHORT).show();
-                                }
-                                else
-                                {
-                                    Toast.makeText(getActivity(), "Failed Check the email address you entered", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        fbs = Firebase.getInstance();
+        etEmail = view.findViewById(R.id.etEmailForgotPassword);
+        btnReset = view.findViewById(R.id.btnResetForgotPassword);
+        btnBack = view.findViewById(R.id.btnBack);
+        btnReset.setOnClickListener(v -> {
+            fbs.getAuth().sendPasswordResetEmail(etEmail.getText().toString())
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getActivity(), "Check your Email", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), "Failed. Check the email address you entered", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
+
+        btnBack.setOnClickListener(v -> {
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.mainFragmentContainer, new LoginFragment())
+                    .commit();
+        });
+
+
+
     }
+
+
+
 }
+
+
+
+
+

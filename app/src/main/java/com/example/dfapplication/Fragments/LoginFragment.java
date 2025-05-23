@@ -161,7 +161,7 @@ public class LoginFragment extends Fragment {
 
                 private void gotoForgotFragment () {
                     FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.main, new ForgotFragment());
+                    ft.replace(R.id.mainFragmentContainer, new ForgotFragment());
                     ft.commit();
                 }
             }
